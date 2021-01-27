@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  ankisyncserver:
+    ports:
+      - "27701:27701"
+    volumes:
+      - ${PWD}/docker_files/ankisyncd.conf:/app/ankisyncd.conf
+      # modify this path to your anki-sync-server path if needed
+      - ${PWD}/docker_files/sync_data/collections:/app/collections
+      - ${PWD}/docker_files/sync_data/auth.db:/app/auth.db
+      - ${PWD}/docker_files/sync_data/session.db:/app/session.db
+    # image: ankiwebserver:latest
+    build: anki-sync-server/src/
+
+  ankiwebserver:
+    ports:
+      - "27702:27702"
+    volumes:
+      - ${PWD}/docker_files/ankiweb.conf:/app/ankiweb.conf
+      # modify this path to your anki-sync-server path if needed
+      - ${PWD}/docker_files/sync_data/collections:/app/anki-sync-server/src/collections
+      - ${PWD}/docker_files/sync_data/auth.db:/app/anki-sync-server/src/auth.db
+      - ${PWD}/docker_files/sync_data/session.db:/app/anki-sync-server/src/session.db
+    # image: ankiwebserver:latest
+    build: anki-web-server/

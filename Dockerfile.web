@@ -1,0 +1,19 @@
+# Dockerfile for build up the image
+FROM python:3.8
+
+LABEL MAINTAINER https://github.com/Nriver/anki-web-server
+
+RUN echo "init anki-web-server"
+ADD flaskbp /app/flaskbp
+ADD app.py /app/app.py
+ADD requirements.txt /app/requirements.txt
+ADD settings.py /app/settings.py
+WORKDIR /app
+RUN pip3 install -r requirements.txt -i https://pypi.doubanio.com/simple/ --trusted-host pypi.doubanio.com
+# RUN pip3 install -r requirements.txt
+
+RUN echo 'alias ll="ls -al"' >> ~/.bashrc
+
+EXPOSE 27702
+# -u for unbuffered output
+CMD ["python", "-u", "app.py"]
