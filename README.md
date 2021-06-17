@@ -14,7 +14,12 @@ And anki-sync-server is on 127.0.0.1:27701, which you can use with other anki cl
 
 Be aware that due to the design of Anki, you can not run two different clients with same account at the same time.
 
-# update submodule
+# update
+run
+```
+docker-compose build
+```
+
 if submodule need to update, try:
 ```
 cd anki-web-server

@@ -15,5 +15,7 @@ RUN pip3 install -r requirements.txt -i https://pypi.doubanio.com/simple/ --trus
 RUN echo 'alias ll="ls -al"' >> ~/.bashrc
 
 EXPOSE 27702
+
+ENV PYTHONUNBUFFERED=1
 # -u for unbuffered output
 CMD ["python", "-u", "app.py"]

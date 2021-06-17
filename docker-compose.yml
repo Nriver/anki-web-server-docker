@@ -12,6 +12,7 @@ services:
       - ./docker_files/sync_data/session.db:/app/session.db
     # image: ankiwebserver:latest
     build: anki-sync-server/src/
+    restart: always
 
   ankiwebserver:
     ports:
@@ -24,3 +25,4 @@ services:
       - ./docker_files/sync_data/session.db:/app/anki-sync-server/src/session.db
     # image: ankiwebserver:latest
     build: anki-web-server/
+    restart: always
